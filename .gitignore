@@ -130,12 +130,8 @@ $RECYCLE.BIN/
 
 .idea/
 crawls/
-followees.log
 test.py
 test1.py
-zhihu/__pycache__/
-zhihu/spiders/__pycache__/
-.idea/dictionaries/
 client.py
 service.py
 zhihu/spiders/problem_answers.py
