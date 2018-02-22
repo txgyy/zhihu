@@ -5,16 +5,17 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
-from .items import userItem,guanxiItem
+from .items import userItem, guanxiItem
+
 
 class ZhihuPipeline(object):
     def __init__(self, mysql_config):
         self.mysql_config = mysql_config
 
     def process_item(self, item, spider):
-        if isinstance(item,userItem):
+        if isinstance(item, userItem):
             sql = """REPLACE INTO {}({}) VALUES ({});""".format('user', ','.join(item._values.keys()), ','.join(['%s'] * len(item)))
-        elif isinstance(item,guanxiItem):
+        elif isinstance(item, guanxiItem):
             sql = """REPLACE INTO {}({}) VALUES ({});""".format('guanxi', ','.join(item._values.keys()), ','.join(['%s'] * len(item)))
         try:
             self.zhihu_cur.executemany(sql.format(*item._values.keys()), zip(*item._values.values(), ))
@@ -40,7 +41,7 @@ class ZhihuPipeline(object):
         self.zhihu_cur.close()
         self.zhihu_con.close()
 
-    def create_tables(self,spider):
+    def create_tables(self, spider):
         guanxi_sql = '''
             -- auto-generated definition
             CREATE TABLE IF NOT EXISTS guanxi

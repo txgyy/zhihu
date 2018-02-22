@@ -133,8 +133,6 @@ class MyCustomDownloaderMiddleware():
     def process_request(self, request, spider):
         if self.ok_url_token_offset.issuperset((request.meta.get('s_url_token'), str(request.meta.get('offset')))):
             raise IgnoreRequest
-
-        request.dont_filter = True
         headers = {
             'User-Agent': self.useragent.random
         }

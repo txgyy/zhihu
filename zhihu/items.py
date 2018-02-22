@@ -7,6 +7,7 @@
 
 import scrapy
 
+
 class userItem(scrapy.Item):
     user_type = scrapy.Field()
     answer_count = scrapy.Field()
@@ -20,13 +21,16 @@ class userItem(scrapy.Item):
     is_org = scrapy.Field()
     follower_count = scrapy.Field()
 
+
 class guanxiItem(scrapy.Item):
     s_url_token = scrapy.Field()
     followee_count = scrapy.Field()
     url_token = scrapy.Field()
 
+
 class problem_answersItem(scrapy.Item):
     content = scrapy.Field()
+
 
 class topicsItem(scrapy.Item):
     offset = scrapy.Field()
